@@ -12,5 +12,8 @@ $ docker pull centos:7
 $ docker run -it -d --name linuxpg centos:7
 
 # 実行
-docker run -it --rm --mount type=bind,source=$(pwd),target=/home/linux linuxpg bash
+# rmはコンテナから抜けた時に、コンテナを削除する
+# wオプションはコンテナに入るときのカレントディレクトリの設定
+# mountオプションは、source（コンテナ使うホスト）とtarget(コンテナ内のフォルダ）をbindする
+docker run -it --rm -w /home/linux --mount type=bind,source=$(pwd),target=/home/linux linuxpg bash
 ```
